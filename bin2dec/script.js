@@ -4,19 +4,8 @@ let textarea = document.getElementsByTagName("textarea")
     for (let i = 0; i < textarea.length; i++) {
         changePlaceholder(textarea[i])
         textarea[i].setAttribute("onkeyup", "changePlaceholder(this)")
-
     }
 }
-
-function getNumbers() {
-    let binary = document.getElementById("binaryInput")
-    let decimal = document.getElementById("decimalInput")
-    let buttonConvert = document.querySelector("button#btnSubmit")
-
-    decimal.value = parseInt(binary.value, 2)
-    binary.value = (decimal.value >>> 0).toString(2)
-}
-
 
 function changePlaceholder(state) {
     if (state.value === ''){
@@ -28,13 +17,24 @@ function changePlaceholder(state) {
     }
 }
 
-//checar se o valor digitado é um número 
+var binary = document.getElementById("binaryInput")
+var decimal = document.getElementById("decimalInput")
+
+function binaryToDecimal() {
+    decimal.value = parseInt(binary.value, 2)
+    if(binary.value == "") decimal.value = ""
+}
+
+function decimalToBinary() {
+    binary.value = (decimal.value >>> 0).toString(2)
+}
+
 function checkTextareaBinaryValue(event) {
     let keyPressed = event || window.event
     let key = keyPressed.keyCode || keyPressed.which
 
     key = String.fromCharCode( key )
-
+    
     let regex = /^[0-1.]+$/
 
     if( !regex.test(key) ) {

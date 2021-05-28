@@ -13,9 +13,9 @@
     <h1><span><p>Bin<i style="color: black;">2</i>Dec</p></span></h1>
     <h2>Converta um número binário para um decimal</h2>
 
-    <textarea type="number" class="centralized" id="binaryInput" autofocus placeholder="Entre com um valor Binário" onkeypress="return checkTextareaBinaryValue();"></textarea>
-    <input type="button" id="btnSubmit" onclick="getNumbers()" value="Converter">
-    <textarea class="centralized" id ="decimalInput" placeholder="Entre com um valor Decimal" onkeypress="return checkTextareaDecimalValue();"></textarea>
+    <textarea type="number" class="centralized" id="binaryInput" onchange="binaryToDecimal()" autofocus placeholder="Entre com um valor Binário" onkeypress="return checkTextareaBinaryValue();"></textarea>
+    <input type="button" id="btnSubmit" value="Converter">
+    <textarea class="centralized" id ="decimalInput" onchange="decimalToBinary()" placeholder="Entre com um valor Decimal" onkeypress="return checkTextareaDecimalValue();"></textarea>
 
     <footer>
         <p>Made with 🖤 by Mitsrael Souza</p>
