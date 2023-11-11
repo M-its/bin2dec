@@ -1,60 +1,81 @@
-window.onload = function() {
-let textarea = document.getElementsByTagName("textarea")
+const form = document.querySelector("form")
+const binaryInput = form.querySelector("input#binaryNumber")
+const decimalInput = form.querySelector("input#decimalNumber")
+const binaryLabel = form.querySelector("label[for='binaryNumber']")
+const decimalLabel = form.querySelector("label[for='decimalNumber']")
 
-    for (let i = 0; i < textarea.length; i++) {
-        changePlaceholder(textarea[i])
-        textarea[i].setAttribute("onkeyup", "changePlaceholder(this)")
+let binary = binaryInput.value
+let decimal = decimalInput.value
+
+function validateBinary() {
+    let invalidBinaryText = document.querySelectorAll("p.invalidNumber")[0]
+    binary = binaryInput.value
+    binaryRegex = /^[01]+$/
+
+    if (binary === "") {
+        return
+    }
+
+    if (binaryRegex.test(binary)) {
+        invalidBinaryText.style.display = "none"
+    }
+
+    if (!binaryRegex.test(binary)) {
+        invalidBinaryText.style.display = "inline"
+        binaryInput.value = binary.replace(/[^0-1]/g, "")
     }
 }
 
-function changePlaceholder(state) {
-    if (state.value === ''){
-        state.classList.remove("normal")
-        state.classList.add("centralized")
-    } else {
-        state.classList.remove("centralized")
-        state.classList.add("normal")
+function validateDecimal() {
+    let invalidDecimalText = document.querySelectorAll("p.invalidNumber")[1]
+    decimal = decimalInput.value
+    decimalRegex = /^[0-9]+$/
+
+    if (decimal === "") {
+        return
+    }
+
+    if (decimalRegex.test(decimal)) {
+        invalidDecimalText.style.display = "none"
+    }
+
+    if (!decimalRegex.test(decimal)) {
+        invalidDecimalText.style.display = "inline"
+        decimalInput.value = decimal.replace(/[^0-9]/g, "")
     }
 }
 
-var binary = document.getElementById("binaryInput")
-var decimal = document.getElementById("decimalInput")
-
-function binaryToDecimal() {
-    decimal.value = parseInt(binary.value, 2)
-    if(binary.value == "") decimal.value = ""
-}
-
-function decimalToBinary() {
-    binary.value = (decimal.value >>> 0).toString(2)
-}
-
-function checkTextareaBinaryValue(event) {
-    let keyPressed = event || window.event
-    let key = keyPressed.keyCode || keyPressed.which
-
-    key = String.fromCharCode( key )
-    
-    let regex = /^[0-1.]+$/
-
-    if( !regex.test(key) ) {
-        if(keyPressed.preventDefault) {
-            keyPressed.preventDefault()
+function convertBase() {
+    binaryInput.addEventListener("keyup", (e) => {
+        if (binary.length > 0) {
+            let convertedBinary = parseInt(binary, 2)
+            if (isNaN(convertedBinary)) {
+                decimalInput.value = ""
+            } else {
+                decimalInput.value = convertedBinary
+            }
         }
-    }
-}
 
-function checkTextareaDecimalValue(event) {
-    let keyPressed = event || window.event
-    let key = keyPressed.keyCode || keyPressed.which
-
-    key = String.fromCharCode( key )
-
-    let regex = /^[0-9.]+$/
-
-    if( !regex.test(key) ) {
-        if(keyPressed.preventDefault) {
-            keyPressed.preventDefault()
+        if (binary.length === 0) {
+            decimalInput.value = ""
         }
-    }
+    })
+
+    decimalInput.addEventListener("keyup", (e) => {
+        if (decimal.length > 0) {
+            decimal = parseInt(decimal)
+            let convertedDecimal = decimal.toString(2)
+            if (isNaN(convertedDecimal)) {
+                binaryInput.value = ""
+            } else {
+                binaryInput.value = convertedDecimal
+            }
+        }
+
+        if (decimal.length === 0) {
+            binaryInput.value = ""
+        }
+    })
 }
+
+convertBase()

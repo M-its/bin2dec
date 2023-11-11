@@ -1,26 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversor Binário para Decimal</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-</head>
-<body>
-    <h1><span><p>Bin<i style="color: black;">2</i>Dec</p></span></h1>
-    <h2>Converta um número binário para um decimal</h2>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta description="Binary to decimal converter" />
+        <title>Conversor Binário para Decimal</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto&family=Share+Tech+Mono&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="./style.css" />
+    </head>
+    <body>
+        <main>
+            <h1>
+                <span>
+                    <p>Bin<i style="color: black">2</i>Dec</p>
+                </span>
+            </h1>
+            <h2>Converta um número binário para um decimal</h2>
+            <form action="#">
+                <div class="binary">
+                    <label for="binaryNumber">Binário:</label>
+                    <p class="invalidNumber">Insira um numero entre 0 e 1</p>
+                    <input
+                        type="text"
+                        id="binaryNumber"
+                        class="binaryInput"
+                        placeholder="insira um valor binário"
+                        oninput="validateBinary()"
+                    />
+                </div>
+                <div class="decimal">
+                    <label for="decimalNumber">Decimal:</label>
+                    <p class="invalidNumber">Insira um numero entre 0 e 9</p>
+                    <input
+                        type="text"
+                        id="decimalNumber"
+                        class="decimalInput"
+                        placeholder="insira um valor decimal"
+                        oninput="validateDecimal()"
+                    />
+                </div>
+            </form>
+        </main>
 
-    <textarea type="number" class="centralized" id="binaryInput" onchange="binaryToDecimal()" autofocus placeholder="Entre com um valor Binário" onkeypress="return checkTextareaBinaryValue();"></textarea>
-    <input type="button" id="btnSubmit" value="Converter">
-    <textarea class="centralized" id ="decimalInput" onchange="decimalToBinary()" placeholder="Entre com um valor Decimal" onkeypress="return checkTextareaDecimalValue();"></textarea>
-
-    <footer>
-        <p>Made with 🖤 by Mitsrael Souza</p>
-    </footer>
-
-    <script src="./script.js"></script>
-</body>
+        <footer>
+            <p>Made with 🖤 by Mitsrael Souza</p>
+        </footer>
+        <script src="./script.js"></script>
+    </body>
 </html>
